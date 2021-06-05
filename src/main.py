@@ -12,14 +12,34 @@ def limpar_janela():
     elif sistema == "Windows":
         os.system("cls")
 
+def comparar_dados(ct0, ct1):
+    contador = 0
+    for linha0 in ct0:
+        for linha1 in ct1:
+            if linha0 == linha1:
+                contador +=1
+
+    if contador == len(ct0):
+        return True
+    else: 
+        return False
+
 if __name__=='__main__':
     base_dados = input('Qual a base dados?: ')
     grupos = int(input('Quantos grupos são necessários? '))
 
     dados_consulta = None
     while dados_consulta == None:
+        # **** Inicio do Algoritmo ****
         dados_consulta = gerar_dados_consulta(base_dados, grupos)
-    
+        comparador = gerar_dados_consulta(base_dados, grupos)
+
+        resultado_comparacao = False
+        if dados_consulta != None and comparador != None:
+            resultado_comparacao = comparar_dados(dados_consulta['centroides'] , comparador['centroides'])
+        if resultado_comparacao == False:
+            dados_consulta = None
+
     centroides = deepcopy(dados_consulta['centroides'])
     conjunto = deepcopy(dados_consulta['conjunto'])
     base = deepcopy(dados_consulta['base'])
@@ -29,6 +49,8 @@ if __name__=='__main__':
 
     #for linha in base:
     #    print(linha)
+    colX, colY = centroides[0].keys()
+
     print(centroides)
     while True:
         print('''
@@ -42,14 +64,14 @@ if __name__=='__main__':
         if op in [0,1,2]:
             if op == 1:
                 ponto = {}
-                ponto['x'] = float(input('Valor X: '))
-                ponto['y'] = float(input('Valor Y: '))
+                ponto[colX] = float(input(f'Valor {colX}: '))
+                ponto[colY] = float(input(f'Valor {colY}: '))
                 #print(f'Centróide {retornar_centroide(ponto, centroides)}')
-                centroide_ponto = retornar_centroide(ponto, centroides)
-                plotar_ponto(ponto, conjunto, centroides, centroide_ponto)
+                centroide_ponto = retornar_centroide(ponto, centroides, colX, colY)
+                plotar_ponto(ponto, conjunto, centroides, centroide_ponto, colX, colY)
 
             elif op == 2:
-                mostrar_grupos(conjunto, centroides)
+                mostrar_grupos(conjunto, centroides, colX, colY)
             
             elif op == 0:
                 break

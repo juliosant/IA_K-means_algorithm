@@ -77,10 +77,60 @@ lista = [1,2,3,4,5,6,7,8,3]
 print(min(lista))
 print(max(lista))
 print(round(uniform(min(lista), max(lista)),2))
-'''
 
 op = 10
 if op in [1,2,3]:
     print(1)
 else:
     print(0)
+
+
+lista0 = [{'x':5, 'y':3}, {'x':9, 'y':6}, {'x':5, 'y': 7}]
+lista1 = [{'x':9, 'y':6}, {'x':5, 'y': 7}, {'x':5, 'y':3}]
+
+contador = 0
+for linha0 in lista0:
+    for linha1 in lista1:
+        if linha0 == linha1:
+            contador +=1
+
+if contador == len(lista0):
+    print("Igual")
+else: 
+    print("Diferente")
+
+
+
+def comparar(val0, val1):
+    if val0 == val1:
+        return True
+    else:
+        return False
+
+val0 = None
+val1 = 2
+
+print(comparar(val0, val1))
+
+base = [{'ana': 0, 'raquel':5}]
+a = base[0].keys()
+x, y = a
+print(x, " ", y)
+'''
+
+lista = [1,3,4,5,6,7]
+contador = 0
+
+'''
+if contador:
+    print('a')
+else:
+    print('b')
+'''
+
+
+while True:
+    for i in lista:
+        print(i)
+        break
+    break

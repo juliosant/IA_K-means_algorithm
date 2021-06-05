@@ -1,11 +1,21 @@
-import random
-import csv
+
 from app import k_means
 from copy import deepcopy
 from matplotlib import pyplot as plt
+from platform import system
+import random
+import csv
+
+def retornar_caminho(base):
+    sistema = system()
+    if sistema == "Linux":
+        return f'base_dados/{base}'
+    elif sistema == "Windows":
+        return f'..\\base_dados\\{base}'
+
 
 def gerar_dados_consulta(base,grupos):
-    with open(f'base_dados/{base}', 'r') as arquivo_csv:
+    with open(retornar_caminho(base), 'r') as arquivo_csv:
         dicionario_csv = csv.DictReader(arquivo_csv)
         base = []
         

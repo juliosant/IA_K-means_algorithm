@@ -69,7 +69,7 @@ lista = ['gato', 'cachorro', 'macaco', 'cachorro']
 #conjunto = set(lista)
 centroides = [{'x':0, 'y':7}, {'x':0, 'y':5}, {'x':0, 'y':2}, {'x':4, 'y':4}]
 print(centroides.count({'x': 0, 'y': 5}))
-'''
+
 
 from random import uniform
 
@@ -77,3 +77,10 @@ lista = [1,2,3,4,5,6,7,8,3]
 print(min(lista))
 print(max(lista))
 print(round(uniform(min(lista), max(lista)),2))
+'''
+
+op = 10
+if op in [1,2,3]:
+    print(1)
+else:
+    print(0)

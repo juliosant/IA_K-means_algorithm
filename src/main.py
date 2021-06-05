@@ -2,6 +2,15 @@
 from initial import gerar_dados_consulta, mostrar_grupos, plotar_ponto
 from app import retornar_centroide
 from copy import deepcopy
+from platform import system
+import os
+
+def limpar_janela():
+    sistema = system()
+    if sistema == "Linux":
+        os.system("clear")
+    elif sistema == "Windows":
+        os.system("cls")
 
 if __name__=='__main__':
     base_dados = input('Qual a base dados?: ')
@@ -30,19 +39,23 @@ if __name__=='__main__':
 
         op = int(input("Escolha uma opção: "))
 
-        if op == 1:
-            ponto = {}
-            ponto['x'] = float(input('Valor X: '))
-            ponto['y'] = float(input('Valor Y: '))
-            #print(f'Centróide {retornar_centroide(ponto, centroides)}')
-            centroide_ponto = retornar_centroide(ponto, centroides)
-            plotar_ponto(ponto, conjunto, centroides, centroide_ponto)
+        if op in [0,1,2]:
+            if op == 1:
+                ponto = {}
+                ponto['x'] = float(input('Valor X: '))
+                ponto['y'] = float(input('Valor Y: '))
+                #print(f'Centróide {retornar_centroide(ponto, centroides)}')
+                centroide_ponto = retornar_centroide(ponto, centroides)
+                plotar_ponto(ponto, conjunto, centroides, centroide_ponto)
 
-        elif op == 2:
-            mostrar_grupos(conjunto, centroides)
+            elif op == 2:
+                mostrar_grupos(conjunto, centroides)
+            
+            elif op == 0:
+                break
         
-        elif op == 0:
-            break
+            limpar_janela()
         
         else:
+            limpar_janela()
             print('Digite um valor válido')
